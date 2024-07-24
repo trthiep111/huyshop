@@ -1,0 +1,209 @@
+{% extends "Main/base.html" %}
+{% block content %}
+{% load custom_filters %}
+ <!-- Shop Page Start  -->
+        <div class="shop-category-area pt-100px pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-9 order-lg-last col-md-12 order-md-first">
+                        <!-- Shop Top Area Start -->
+                        <div class="shop-top-bar d-flex">
+                            <p class="compare-product"> <span>12</span> Sản phẩm được tìm thấy của <span>30</span></p>
+                            <!-- Left Side End -->
+                            <div class="shop-tab nav">
+                                <button class="active" data-bs-target="#shop-grid" data-bs-toggle="tab">
+                                    <i class="fa fa-th" aria-hidden="true"></i>
+                                </button>
+                                <button data-bs-target="#shop-list" data-bs-toggle="tab">
+                                    <i class="fa fa-list" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                            <!-- Right Side Start -->
+                            <div class="select-shoing-wrap d-flex align-items-center">
+                                <div class="shot-product">
+                                    <p>Sắp xếp theo:</p>
+                                </div>
+                                <!-- Single Wedge End -->
+                                <div class="header-bottom-set dropdown">
+                                    <button class="dropdown-toggle header-action-btn" data-bs-toggle="dropdown">Mặc định <i class="fa fa-angle-down"></i></button>
+                                    <ul class="dropdown-menu dropdown-menu-right">
+                                        <li><a class="dropdown-item" href="/products/{% for i in product %}ATOZ={{i.id}} {% endfor %}">Tên, A đến Z</a></li>
+
+                                    </ul>
+                                </div>
+                                <!-- Single Wedge Start -->
+                            </div>
+                            <!-- Right Side End -->
+                        </div>
+                        <!-- Shop Top Area End -->
+                        <!-- Shop Bottom Area Start -->
+                        <div class="shop-bottom-area">
+                            <!-- Tab Content Area Start -->
+                            <div class="row">
+                                <div class="col">
+                                    <div class="tab-content">
+                                        <div class="tab-pane fade show active" id="shop-grid">
+                                            <div class="row mb-n-30px">
+                                                {% for product in product %}
+
+                                                <div class="col-lg-4 col-md-6 col-sm-6 col-xs-6 mb-30px">
+                                                    <!-- Single Prodect -->
+                                                    <div class="product">
+
+                                                        <span class="badges">
+                                                        <span class="new">{{product.condition}}</span>
+                                                        </span>
+                                                        <div class="thumb">
+                                                            <a href="/products/{{product.id}}" class="image">
+                                                                <img src="/{{product.image}}" alt="Product" />
+
+                                                            </a>
+                                                        </div>
+                                                        <div class="content">
+                                                            <span class="category"><a href="#">{{product.categories}}</a></span>
+                                                            <h5 class="title"><a href="single-product.html">{{product.name}}
+                                                                </a>
+                                                            </h5>
+                                                            <span class="price">
+                                                            <span class="new" style="color: red; font-weight: bold;">{{product.price|currency}}</span>
+                                                            </span>
+                                                        </div>
+                                                        <div class="actions">
+                                                            <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart-{{forloop.counter}}"><i
+                                                                class="pe-7s-shopbag"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endfor %}
+
+
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade mb-n-30px" id="shop-list">
+                                            {% for product in product %}
+                                            <div class="shop-list-wrapper mb-30px">
+                                                <div class="row">
+                                                    <div class="col-md-5 col-lg-5 col-xl-4 mb-lm-30px">
+                                                        <div class="product">
+                                                            <div class="thumb">
+                                                                <a href="/products/{{product.id}}" class="image">
+                                                                    <img src="/{{product.image}}" alt="Product" />
+
+                                                                </a>
+                                                                <span class="badges">
+                                                                <span class="new">{{product.condition}}</span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-7 col-lg-7 col-xl-8">
+                                                        <div class="content-desc-wrap">
+                                                            <div class="content">
+                                                                <span class="category"><a href="#">{{product.categories}}</a></span>
+                                                                <h5 class="title"><a href="single-product.html">{{product.name}}</a></h5>
+                                                            </div>
+                                                            <div class="box-inner">
+                                                                <span class="price">
+                                                                <span class="new" style="color: red; font-weight: bold;">{{product.price|currency}}</span>
+                                                                </span>
+                                                                <div class="actions">
+                                                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart-{{forloop.counter}}"><i
+                                                                    class="pe-7s-shopbag"></i></button>
+                                                        </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                             {% endfor %}
+
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Tab Content Area End -->
+                            <!--  Pagination Area Start -->
+                            <!--  Pagination Area End -->
+                        </div>
+                        <!-- Shop Bottom Area End -->
+                    </div>
+                    <!-- Sidebar Area Start -->
+                    <div class="col-lg-3 order-lg-first col-md-12 order-md-last">
+                        <div class="shop-sidebar-wrap">
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget">
+                                <h4 class="sidebar-title" style="color: black; font-weight: bold; text-decoration: none;">Danh mục hàng đầu</h4>
+                                <div class="sidebar-widget-category">
+                                    <ul>
+                                        <li><a href="/products/" class="selected m-0"></a></li>
+                                        {% for categories in categories %}
+                                        <li><a href="/products/categories={{categories.id}}"style="color: black; font-weight: bold; text-decoration: none;"  class="selected m-0"> {{categories.name}} </a></li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget mt-8">
+                                <h4 class="sidebar-title" style="color: black; font-weight: bold; text-decoration: none;">Bộ lọc giá</h4>
+                                <div class="price-filter">
+                                    <div class="price-slider-amount">
+                                         {% for filter_price in filter_price %}
+                                        <li><a href="/products/filter_price={{filter_price.id}}"style="color: black; font-weight: bold; text-decoration: none;"  class="selected m-0"> {{filter_price.price}} </a></li>
+                                        {% endfor %}
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget">
+                                <h4 class="sidebar-title" style="color: black; font-weight: bold; text-decoration: none;">Màu sắc</h4>
+                                <div class="sidebar-widget-color">
+                                    <ul class="d-flex flex-wrap">
+                                        {% for color in color %}
+                                        <li><a href="/products/color={{color.id}}" style="background-color:{{color.code}}"></a></li>
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget">
+                                <h4 class="sidebar-title"style="color: black; font-weight: bold; text-decoration: none;" >Kích cỡ</h4>
+                                <div class="sidebar-widget-size">
+                                    <ul >
+                                        <li><a href="#" class="selected m-0" style="color: black; font-weight: bold; text-decoration: none;" > Tất cả
+                                                </a></li>
+                                        <li><a href="#" class="" style="color: black; font-weight: bold; text-decoration: none;"><span>(38)</span> </a>
+                                        </li>
+                                        <li><a href="#" class="" style="color: black; font-weight: bold; text-decoration: none;"><span>(39)</span> </a>
+                                        </li>
+                                        <li><a href="#" class="" style="color: black; font-weight: bold; text-decoration: none;"><span>(40)</span> </a>
+                                        </li>
+                                        <li><a href="#" class="" style="color: black; font-weight: bold; text-decoration: none;"><span>(43)</span> </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+                            <div class="sidebar-widget">
+                                <h4 class="sidebar-title" style="color: black; font-weight: bold; text-decoration: none;" >Nhãn hiệu</h4>
+                                <div class="sidebar-widget-brand" >
+                                    <ul >
+                                        <li><a href="/products/" class="selected m-0" style="color: black; font-weight: bold; text-decoration: none;" > Tất cả thương hiệu </a></li>
+                                        {% for brand in brand %}
+                                        <li><a href="/products/brand={{brand.id}}" class="" style="color: black; font-weight: bold; text-decoration: none;" > {{brand.name}} </a></li>
+                                        {% endfor %}
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Sidebar single item -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Shop Page End  -->
+
+{% endblock %}

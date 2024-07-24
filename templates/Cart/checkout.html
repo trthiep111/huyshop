@@ -1,0 +1,167 @@
+{% extends 'Main/base.html' %}
+{% block content %}
+{% load custom_filters %}
+ <!-- checkout area start -->
+<form method="post" action="">
+    {% csrf_token %}
+        <div class="checkout-area pt-100px pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-7">
+                        <div class="billing-info-wrap">
+                            <h3>Chi tiết thanh toán</h3>
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Tên</label>
+                                        <input type="text" value="{{user.first_name}}" readonly/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Họ</label>
+                                        <input type="text" value="{{user.last_name}}" readonly/>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-4">
+                                        <label>Tên công ty</label>
+                                        <input type="text" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-select mb-4">
+                                        <label>Quốc gia</label>
+                                        <select>
+                                            <option>Hà Nội</option>
+                                            <option>Hải Phòng</option>
+                                            <option>Bắc Giang</option>
+                                            <option>Ninh Bình</option>
+                                            <option>Thái Nguyên</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-4">
+                                        <label>Địa chỉ đường phố</label>
+                                        <input class="billing-address" placeholder="Số nhà và tên đường" type="text" />
+                                        <input placeholder="" type="text" name="address" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-12">
+                                    <div class="billing-info mb-4">
+                                        <label>Thị trấn / Thành phố</label>
+                                        <input type="text" name="city" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Tình trạng </label>
+                                        <input type="text" name="state" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Mã bưu / Zip</label>
+                                        <input type="text" name="postcode" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Điện thoại</label>
+                                        <input type="text" name="phone" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="billing-info mb-4">
+                                        <label>Địa chỉ email</label>
+                                        <input type="text" value="{{user.email}}" name="email" readonly/>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="col-lg-5 mt-md-30px mt-lm-30px ">
+                        <div class="your-order-area">
+                            <h3>Đơn hàng của bạn</h3>
+                            <div class="your-order-wrap gray-bg-4">
+                                <div class="your-order-product-info">
+                                    <div class="your-order-top">
+                                        <ul>
+                                            <li>Sản phẩm</li>
+                                            <li>Tổng cộng</li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-middle">
+                                      {% load custom_filters %}
+
+                                        <ul>
+                                            {% for key, value in request.session.cart.items %}
+                                                <li>
+                                                    <span class="order-middle-left">{{ value.name|truncatewords:4 }} X {{ value.quantity }}</span>
+                                                    <span class="order-price">{{ value.price|currency }}</span>
+                                                </li>
+                                            {% endfor %}
+                                        </ul>
+                                    <div class="your-order-bottom">
+                                        <ul>
+                                            <li class="your-order-shipping">Đang chuyển hàng</li>
+                                            <li>Miễn phí vận chuyển</li>
+                                        </ul>
+                                    </div>
+                                    <div class="your-order-total">
+                                        <ul>
+                                            <li class="order-total">Tổng cộng</li>
+                                            <li>{{cart_total_amount|currency}}</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="payment-method">
+                                    <div class="payment-accordion element-mrg">
+                                        <div id="faq" class="panel-group">
+                                            <div class="panel panel-default single-my-account m-0">
+                                                <div class="panel-heading my-account-title">
+                                                    <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-1" class="collapsed" aria-expanded="true">Chuyển khoản trực tiếp</a>
+                                                    </h4>
+                                                </div>
+                                                <div id="my-account-1" class="panel-collapse collapse show" data-bs-parent="#faq">
+                                                    <div class="panel-body">
+                                                        <p>Vui lòng gửi séc đến Tên cửa hàng, Phố cửa hàng, Thị trấn cửa hàng, Lưu trữ Tiểu bang / Quận, Mã bưu điện lưu trữ.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default single-my-account m-0">
+                                                <div class="panel-heading my-account-title">
+                                                    <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-2" aria-expanded="false" class="collapsed">Kiểm tra thanh toán</a></h4>
+                                                </div>
+                                                <div id="my-account-2" class="panel-collapse collapse" data-bs-parent="#faq">
+                                                    <div class="panel-body">
+                                                        <p>Vui lòng gửi séc đến Tên cửa hàng, Phố cửa hàng, Thị trấn cửa hàng, Lưu trữ Tiểu bang / Quận, Mã bưu điện lưu trữ.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="panel panel-default single-my-account m-0">
+                                                <div class="panel-heading my-account-title">
+                                                    <h4 class="panel-title"><a data-bs-toggle="collapse" href="#my-account-3">Thanh toán khi giao hàng</a></h4>
+                                                </div>
+                                                <div id="my-account-3" class="panel-collapse collapse" data-bs-parent="#faq">
+                                                    <div class="panel-body">
+                                                        <p>Vui lòng gửi séc đến Tên cửa hàng, Phố cửa hàng, Thị trấn cửa hàng, Lưu trữ Tiểu bang / Quận, Mã bưu điện lưu trữ.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="Place-order mt-25">
+                                <a class="btn-hover" href="#"><button type="submit" class="text-light">Tiếp tục</button></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</form>
+{% endblock %}

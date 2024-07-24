@@ -1,0 +1,230 @@
+{% extends "Main/base.html" %}
+{% block content %}
+{% load custom_filters %}
+ <!-- Product Details Area Start -->
+        <div class="product-details-area pt-100px pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-sm-12 col-xs-12 mb-lm-30px mb-md-30px mb-sm-30px">
+                        <!-- Swiper -->
+                        <div class="swiper-container zoom-top">
+                            <div class="swiper-wrapper">
+                                {% for img in prod.images_set.all %}
+                                <div class="swiper-slide">
+                                    <img class="img-responsive m-auto" src="/{{img.Image}}" alt="">
+                                    <a class="venobox full-preview" data-gall="myGallery" href="/{{img.Image}}">
+                                        <i class="fa fa-arrows-alt" aria-hidden="true"></i>
+                                    </a>
+                                </div>
+                                {% endfor %}
+                             </div>
+                        </div>
+                        <div class="swiper-container mt-20px zoom-thumbs slider-nav-style-1 small-nav">
+                            <div class="swiper-wrapper">
+                                {% for img in prod.images_set.all %}
+                                <div class="swiper-slide">
+                                    <img class="img-responsive m-auto" src="/{{img.Image}}" alt="">
+                                </div>
+                                {% endfor %}
+                            </div>
+                            <!-- Add Arrows -->
+                            <div class="swiper-buttons">
+                                <div class="swiper-button-next"></div>
+                                <div class="swiper-button-prev"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
+                        <div class="product-details-content quickview-content ml-25px">
+                            <h2>{{prod.name}}</h2>
+                            <div class="pricing-meta">
+                                <ul class="d-flex">
+                                    <li class="new-price">{{prod.price|currency }}</li>
+                                </ul>
+                            </div>
+                            <div class="pro-details-rating-wrap">
+                                <div class="rating-product">
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                    <i class="fa fa-star"></i>
+                                </div>
+                                <span class="read-review"><a class="reviews" href="#">(5 Đánh giá của khách hàng)</a></span>
+                            </div>
+                            <p class="mt-30px">{{prod.description | safe}}</p>
+                            <div class="pro-details-categories-info pro-details-same-style d-flex m-0">
+
+                                <span>Kích cỡ:</span>
+                                <ul class="d-flex">
+                                    <li>
+                                        <a href="#">38</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="pro-details-categories-info pro-details-same-style d-flex m-0">
+                                <span>Thể loại: </span>
+                                <ul class="d-flex">
+                                    <li>
+                                        <a href="#">{{prod.categories}} </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="pro-details-categories-info pro-details-same-style d-flex m-0">
+                                <span>Màu Sắc: </span>
+                                <ul class="d-flex">
+                                    <li>
+                                        {% for i in prod.tag_set.all %}
+                                        <a href="#">{{i.name}} , </a>
+                                        {% endfor %}
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="pro-details-quality">
+                                <div class="pro-details-cart">
+                                      <button class="add-cart" style="background-color: black; border: none; padding: 10px 20px; cursor: pointer; display: inline-block; text-align: center;">
+                                        <a href="{% url 'cart_detail' %}" style="color: white; text-decoration: none; font-weight: bold;">Mua Ngay</a>
+                                      </button>
+                                </div>
+                                <div class="pro-details-compare-wishlist pro-details-wishlist ">
+                                    <a href=""><i class="pe-7s-like"></i></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        <!-- product details description area start -->
+                        <div class="description-review-wrapper">
+                            <div class="description-review-topbar nav">
+                                <button data-bs-toggle="tab" data-bs-target="#des-details2">Thông tin</button>
+
+                                <button data-bs-toggle="tab" data-bs-target="#des-details3">Đánh giá (02)</button>
+                            </div>
+                            <div class="tab-content description-review-bottom">
+                                <div id="des-details2" class="tab-pane">
+                                    <div class="product-anotherinfo-wrapper text-start">
+                                        <ul>
+                                            <li>{{prod.information | safe}}</li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div id="des-details1" class="tab-pane active">
+                                    <div class="product-description-wrapper">
+                                        <p>
+                                           {{product.description | safe}}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div id="des-details3" class="tab-pane">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="review-wrapper">
+                                                <div class="single-review">
+                                                    <div class="review-img">
+                                                        <img src="assets/images/review-image/1.png" alt="" />
+                                                    </div>
+                                                    <div class="review-content">
+                                                        <div class="review-top-wrap">
+                                                            <div class="review-left">
+                                                                <div class="review-name">
+                                                                    <h4>White Lewis</h4>
+                                                                </div>
+                                                                <div class="rating-product">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="review-left">
+                                                                <a href="#">Hồi đáp</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="review-bottom">
+                                                            <p>
+
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="single-review child-review">
+                                                    <div class="review-img">
+                                                        <img src="assets/images/review-image/2.png" alt="" />
+                                                    </div>
+                                                    <div class="review-content">
+                                                        <div class="review-top-wrap">
+                                                            <div class="review-left">
+                                                                <div class="review-name">
+                                                                    <h4>White Lewis</h4>
+                                                                </div>
+                                                                <div class="rating-product">
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                    <i class="fa fa-star"></i>
+                                                                </div>
+                                                            </div>
+                                                            <div class="review-left">
+                                                                <a href="#">Hồi đáp</a>
+                                                            </div>
+                                                        </div>
+                                                        <div class="review-bottom">
+                                                            <p></p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                            <div class="ratting-form-wrapper pl-50">
+                                                <h3>Thêm một bài đánh giá</h3>
+                                                <div class="ratting-form">
+                                                    <form action="#">
+                                                        <div class="star-box">
+                                                            <span>Đánh giá của bạn:</span>
+                                                            <div class="rating-product">
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                                <i class="fa fa-star"></i>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="rating-form-style">
+                                                                    <input placeholder="Name" type="text" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="rating-form-style">
+                                                                    <input placeholder="Email" type="email" />
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-12">
+                                                                <div class="rating-form-style form-submit">
+                                                                    <textarea name="Your Review" placeholder="Message"></textarea>
+                                                                    <button class="btn btn-primary btn-hover-color-primary " type="submit" value="Submit">Nộp</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- product details description area end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Product Area Start -->
+
+{% endblock %}

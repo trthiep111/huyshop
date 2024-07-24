@@ -1,0 +1,310 @@
+{% extends "Main/base.html" %}
+{% load static %}
+{% block content %}
+<!-- Hero/Intro Slider Start -->
+        <div class="section ">
+            <div class="hero-slider swiper-container slider-nav-style-1 slider-dot-style-1">
+                <!-- Hero slider Active -->
+
+                <!-- Add Pagination -->
+                <div class="swiper-pagination swiper-pagination-white"></div>
+                <!-- Add Arrows -->
+                <div class="swiper-buttons">
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Hero/Intro Slider End -->
+        <!-- Banner Area Start -->
+        <div class="banner-area style-two pt-20px pb-100px">
+            <div class="container">
+                        <div class="single-banner nth-child-2 mb-lm-30px" style="width: 100%; height: auto; top: 85px;">
+                            <img src="{% static 'assets/images/anhgiay/logo.jpg' %}" alt="" >
+                            <div class="banner-content nth-child-3">
+
+                            </div>
+                        </div>
+            </div>
+        </div>
+
+
+        <!-- Banner Area End -->
+        <!-- Product Area Start -->
+        <div class="product-area pb-100px" style="font-family: Arial, sans-serif;">
+            <div class="container">
+                <!-- Section Title & Tab Start -->
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <h2>SHOP GIÀY CAO CẤP </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                </div>
+                <div class="col d-none d-lg-block" style="list-style-type: none; padding: 0; margin: 0; ">
+                            <div class="top-nav">
+                                   <ul style="display: flex; list-style: none; padding: 0; justify-content: center; align-items: center; width: 100%;">
+                                        <li style="margin-right: 20px; display: flex; align-items: center; transform: translateY(-20px);">
+                                            <a href="/products/{{product.id}}" style="color: black; font-weight: bold; display: flex; align-items: center;">
+                                                <img src="" alt="" style="width: 20px; height: auto; margin-right: 5px;">NAM GIỚI
+                                            </a>
+                                        </li>
+                                        <li style="margin-right: 20px; transform: translateY(-20px);">
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold;">
+                                            <img src="" alt="" style="width: 20px; height: auto; margin-right: 5px;">NỮ GIỚI
+                                        </a>
+                                    </li>
+
+                                </ul>
+                        </div>
+
+                </div>
+
+                <!-- Section Title & Tab End -->
+                <div class="row">
+                    <div class="col">
+                        <div class="row mb-n-30px">
+                            {% for product in product %}
+                            {% load custom_filters %}
+
+                            <div class="col-lg-4 col-xl-3 col-md-6 col-sm-6 col-xs-6 mb-30px">
+                                <!-- Single Prodect -->
+                                <div class="product">
+                                    <span class="badges">
+                                        <span class="new">{{product.condition}}</span>
+                                    </span>
+                                    <div class="thumb">
+                                        <a href="/products/{{product.id}}" class="image">
+                                            <img src="{{product.image}}" alt="Product" style="height:250px;" />
+                                            <img class="hover-image" src="{{product.image}}" alt="Product" />
+                                        </a>
+                                    </div>
+                                    <div class="content">
+                                        <br>
+                                        <span class="category"><a href="/products/{{product.id}}">{{product.categories}}</a></span>
+                                        <h5 class="title"><a href="/products/{{product.id}}">{{ product.name | truncatewords:8 }}</a></h5>
+
+                                        <span class="price">
+                                            <span class="new" style="color: red; font-weight: bold;">{{product.price|currency}}</span>
+                                        </span>
+                                    </div>
+                                    <div class="actions">
+                                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart-{{forloop.counter}}"><i class="pe-7s-shopbag"></i></button>
+                                            </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Product Area End -->
+        <!-- Feature product area start -->
+        <div class="feature-product-area pb-100px">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <h2>PHIẾU MUA HÀNG NỔI BẬT </h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="feature-product-slider swiper-container slider-nav-style-1">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide feature-right-content">
+                            <div class="image-side">
+                                <img src="{% static 'assets/images/anhgiay/a1.1.jpg' %}" alt="">
+                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                    class="pe-7s-shopbag"></i></button>
+                            </div>
+                            <div class="content-side">
+                                <div class="deal-timing">
+                                    <span>Kết thúc:</span>
+                                    <div data-countdown="2023/09/15"></div>
+                                </div>
+                                <div class="prize-content">
+                                    <h5 class="title"><a href="single-product.html">MLB Chunky Liner NY Quai Dán Trắng Đen REP 1:1 </a></h5>
+                                    <span class="price">
+                                <span class="old">588.000đ</span>
+                                    <span class="new">488.000đ</span>
+                                    </span>
+                                </div>
+                                <div class="product-feature">
+                                    <ul>
+                                        <li>Giảm giá 20% </li>
+                                        <li>Sử dụng mã: <span>GIAY20</span></li>
+                                        <li>Hạn sử dụng: 31/12/2024</li>
+                                        <li>Tổng trọng lượng: <span>800 gram.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide feature-right-content">
+                            <div class="image-side">
+                                <img src="{% static 'assets/images/anhgiay/b1.1.jpg' %}" alt="">
+                                <button title="Add To Cart" class="action add-to-cart" data-bs-toggle="modal" data-bs-target="#exampleModal-Cart"><i
+                                    class="pe-7s-shopbag"></i></button>
+                            </div>
+                            <div class="content-side">
+                                <div class="deal-timing">
+                                    <span>Kết thúc:</span>
+                                    <div data-countdown="2021/09/15"></div>
+                                </div>
+                                <div class="prize-content">
+                                    <h5 class="title"><a href="single-product.html">Jordan 1 Low Travis Scott Nâu Kem REP 1:1</a></h5>
+                                    <span class="price">
+                                <span class="old">488.000đ</span>
+                                    <span class="new">388.000đ</span>
+                                    </span>
+                                </div>
+                                <div class="product-feature">
+                                    <ul>
+                                        <li>Giảm giá 20% </li>
+                                        <li>Sử dụng mã: <span>GIAY20</span></li>
+                                        <li>Hạn sử dụng: 31/12/2024</li>
+                                        <li>Tổng trọng lượng: <span>800 gram.</span></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Add Arrows -->
+                    <div class="swiper-buttons">
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Feature product area End -->
+        <!-- Feature Area Srart -->
+        <div class="feature-area pt-100px pb-100px">
+            <div class="container">
+                <div class="feature-wrapper">
+                    <div class="single-feture-col mb-md-30px mb-lm-30px">
+                        <!-- single item -->
+                        <div class="single-feature">
+                            <div class="feature-icon">
+                                <img src="{% static 'assets/images/icons/1.png' %}" alt="">
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="title">Free Shipping</h4>
+                                <span class="sub-title">Giới hạn ở mức 39 cho mỗi đơn hàng</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single item -->
+                    <div class="single-feture-col mb-md-30px mb-lm-30px">
+                        <div class="single-feature">
+                            <div class="feature-icon">
+                                <img src="{% static 'assets/images/icons/2.png' %}" alt="">
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="title">Card Payments</h4>
+                                <span class="sub-title">Trả góp 12 tháng</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- single item -->
+                    <div class="single-feture-col">
+                        <div class="single-feature">
+                            <div class="feature-icon">
+                                <img src="{% static 'assets/images/icons/3.png' %}" alt="">
+                            </div>
+                            <div class="feature-content">
+                                <h4 class="title">Easy Returns</h4>
+                                <span class="sub-title">Mua sắm với sự tự tin</span>
+                            </div>
+                        </div>
+                        <!-- single item -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Feature Area End -->
+        <!-- Blog area start from here -->
+            <div class="row">
+                    <div class="col-12">
+                        <div class="section-title text-center">
+                            <h2  style="font-family: Arial, sans-serif; font-weight: bold;">THƯƠNG HIỆU GIÀY NỔI TIẾNG </h2>
+                        </div>
+                    </div>
+            </div>
+            <div class="row">
+            </div>
+        <div class="col d-none d-lg-block">
+                        <div class="top-nav" style="display: flex; justify-content: center;">
+                                <ul style="display: flex; list-style: none; padding: 0;">
+                                    <li>
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold; ">
+                                            <img src="{% static 'assets/images/imgg/b1.jpeg' %}" alt="#"  style="width: 100px; height: auto;">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold;">
+                                             <img src="{% static 'assets/images/imgg/b2.jpeg' %}" alt="#"  style="width: 100px; height: auto;">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold;">
+                                            <img src="{% static 'assets/images/imgg/b3.jpeg' %}" alt="#"  style="width: 100px; height: auto;">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold;">
+                                            <img src="{% static 'assets/images/imgg/b4.jpeg' %}" alt="#"  style="width: 100px; height: auto;">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold;">
+                                            <img src="{% static 'assets/images/imgg/b5.jpeg' %}" alt="#"  style="width: 100px; height: auto;">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold;">
+                                            <img src="{% static 'assets/images/imgg/b6.jpeg' %}" alt="#"  style="width: 100px; height: auto;">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold;">
+                                            <img src="{% static 'assets/images/imgg/b7.jpeg' %}" alt="#"  style="width: 100px; height: auto;">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold;">
+                                            <img src="{% static 'assets/images/imgg/b8.jpeg' %}" alt="#"  style="width: 100px; height: auto;">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold;">
+                                            <img src="{% static 'assets/images/imgg/b9.jpeg' %}" alt="#"  style="width: 100px; height: auto;">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold;">
+                                            <img src="{% static 'assets/images/imgg/b10.jpeg' %}" alt="#"  style="width: 100px; height: auto;">
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/products/{{product.id}}" style="color: black; font-weight: bold;">
+                                            <img src="{% static 'assets/images/imgg/b11.jpeg' %}" alt="#"  style="width: 100px; height: auto;">
+                                        </a>
+                                    </li>
+
+
+                                </ul>
+                        </div>
+
+        </div>
+        <!-- Blog area end here -->
+
+
+
+{% endblock %}
